@@ -46,6 +46,44 @@ The recommended setup uses:
 
 ## Step-by-Step Setup
 
+### Quick Setup (Automated Script)
+
+If you have already built or downloaded the binary, you can use the automated setup script:
+
+```bash
+# Clone the repository (if you haven't already)
+git clone https://github.com/CodeMeAPixel/pxBackupManager.git
+cd pxBackupManager
+
+# Build the binary
+make build
+
+# Run the setup script as root
+sudo bash examples/setup-systemd.sh
+```
+
+The script will:
+- Create the `pxbackup` system user
+- Create `/opt/pxBackupManager/` and `/backups/pxBackupManager/` directories
+- Copy the binary to the correct location
+- Install systemd service and timer files
+- Set proper permissions
+
+After the script completes, edit the service file to add your database credentials:
+
+```bash
+sudo nano /etc/systemd/system/pxBackupManager.service
+```
+
+Replace `YourPasswordHere` with your actual database password, then:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start pxBackupManager.timer
+```
+
+### Manual Setup (Step-by-Step)
+
 ### 1. Create the Backup User
 
 ```bash

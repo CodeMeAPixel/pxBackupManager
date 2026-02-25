@@ -254,14 +254,6 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-## Author
-
-**Pixel**  
-📧 [hey@codemeapixel.dev](mailto:hey@codemeapixel.dev)  
-🔗 [GitHub](https://github.com/CodeMeAPixel/pxBackupManager)
-
----
-
 ## Acknowledgments
 
 - Built with [Go](https://golang.org/)

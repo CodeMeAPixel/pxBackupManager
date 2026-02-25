@@ -1,10 +1,9 @@
 [Unit]
-Description=Flux Backup Timer - Daily at 2 AM
-Requires=flux-backup.service
+Description=pxBackupManager - Daily Backup Timer
+Requires=pxBackupManager.service
 
 [Timer]
 # Run daily at 2:00 AM
-OnCalendar=daily
 OnCalendar=*-*-* 02:00:00
 
 # Run on boot if missed

@@ -1,25 +1,25 @@
 [Unit]
-Description=Flux Backup Service for FiveM and MariaDB
+Description=pxBackupManager - Backup Service for FiveM and MariaDB
 After=network.target mysql.service
-Wants=flux-backup.timer
+Wants=pxBackupManager.timer
 
 [Service]
 Type=oneshot
-User=backup
-Group=backup
-WorkingDirectory=/opt/flux-backup
-ExecStart=/opt/flux-backup/flux-backup \
+User=pxbackup
+Group=pxbackup
+WorkingDirectory=/opt/pxBackupManager
+ExecStart=/opt/pxBackupManager/pxBackupManager \
   -fivem /opt/fivem \
   -db-name fivem \
   -db-user backup \
   -db-pass YourPasswordHere \
-  -backup-dir /backups/flux \
+  -backup-dir /backups/pxBackupManager \
   -retention 30
 
 # Logging
 StandardOutput=journal
 StandardError=journal
-SyslogIdentifier=flux-backup
+SyslogIdentifier=pxBackupManager
 
 # Security
 PrivateTmp=yes

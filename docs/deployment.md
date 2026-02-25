@@ -25,20 +25,36 @@ This guide covers multiple ways to schedule and run pxBackupManager automaticall
 
 **Before starting:** Read [Recommended Setup](recommended-setup.md) for production directory structure and user permissions.
 
-### Quick Start
+### Quick Setup (Automated Script)
 
-The [Recommended Setup Guide](recommended-setup.md) provides detailed steps for:
-- Creating a dedicated `pxbackup` user
-- Setting up the directory structure
-- Installing the binary
-- Creating systemd service and timer files
-- Verifying the setup
+The fastest way to get started:
 
-Follow that guide for a production-ready installation.
+```bash
+# Build the binary
+make build
 
-### Manual Setup (Advanced)
+# Run the automated setup script
+sudo bash examples/setup-systemd.sh
+```
 
-If you prefer manual configuration:
+This script handles:
+- User and directory creation
+- Binary installation
+- systemd service/timer setup
+- Proper permissions
+
+After running, edit to add credentials:
+```bash
+sudo nano /etc/systemd/system/pxBackupManager.service
+```
+
+Then start the timer:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start pxBackupManager.timer
+```
+
+### Manual Setup
 
 1. **Build the binary:**
    ```bash
@@ -172,7 +188,29 @@ OnCalendar=*-*-* 12:00:00
 - Compatible with all Unix-like systems
 - Easy to understand and modify
 
-### Setup Steps
+### Quick Setup (Automated Script)
+
+```bash
+# Build the binary
+make build
+
+# Copy to standard location
+sudo mkdir -p /opt/pxBackupManager
+sudo cp pxBackupManager /opt/pxBackupManager/
+sudo chmod +x /opt/pxBackupManager/pxBackupManager
+
+# Run the cron setup script
+bash examples/setup-cron.sh
+```
+
+The script will add the backup job to your crontab to run daily at 2 AM.
+
+View your backup logs:
+```bash
+tail -f ~/.backup-logs/pxBackupManager.log
+```
+
+### Manual Setup
 
 1. **Build the binary:**
    ```bash
