@@ -1,0 +1,29 @@
+[Unit]
+Description=Flux Backup Service for FiveM and MariaDB
+After=network.target mysql.service
+Wants=flux-backup.timer
+
+[Service]
+Type=oneshot
+User=backup
+Group=backup
+WorkingDirectory=/opt/flux-backup
+ExecStart=/opt/flux-backup/flux-backup \
+  -fivem /opt/fivem \
+  -db-name fivem \
+  -db-user backup \
+  -db-pass YourPasswordHere \
+  -backup-dir /backups/flux \
+  -retention 30
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=flux-backup
+
+# Security
+PrivateTmp=yes
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

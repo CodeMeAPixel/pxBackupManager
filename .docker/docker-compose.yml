@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  flux-backup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flux-backup
+    restart: unless-stopped
+    environment:
+      DB_PASSWORD: your_mariadb_password
+    volumes:
+      # FiveM server directory
+      - /opt/fivem:/mnt/fivem:ro
+      # Backup storage
+      - /backups/flux:/backups
+      # Timezone
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - default
+
+networks:
+  default:
+    name: fivem-network

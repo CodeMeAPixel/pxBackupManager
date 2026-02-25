@@ -1,0 +1,6 @@
+flux-backup
+flux-backup.exe
+backups/
+.DS_Store
+*.local
+*.tmp
