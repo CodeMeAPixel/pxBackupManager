@@ -1,5 +1,5 @@
-flux-backup
-flux-backup.exe
+pxBackupManager
+pxBackupManager.exe
 backups/
 .DS_Store
 *.local
