@@ -54,7 +54,7 @@ func main() {
 	flag.Parse()
 
 	if *version {
-		fmt.Println("pxBackupManager v2.0.0")
+		fmt.Println("pxBackupManager v0.1.0")
 		os.Exit(0)
 	}
 

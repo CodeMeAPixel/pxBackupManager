@@ -4,3 +4,13 @@ backups/
 .DS_Store
 *.local
 *.tmp
+
+# Release artifacts (not committed)
+releases/
+pxBackupManager-*.zip
+pxBackupManager-*.tar.gz
+
+# Private scripts
+create-release.bat
+create-release.sh
+docs/RELEASE_SCRIPTS.md
