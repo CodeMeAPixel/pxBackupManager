@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 02-25-2026
+
+### Fixed
+- **FiveM Backup Tar Creation**: Fixed "archive/tar: write too long" error by implementing robust error handling that skips problematic files (extremely long paths, inaccessible files, special files) instead of failing the entire backup
+- **Backup Resilience**: FiveM backups now continue on file errors, only skipping files that can't be archived and logging warnings for each skipped file
+- **File Type Validation**: Improved file type handling to ensure only regular files are copied (skip special files, symlinks with long targets, etc.)
+
+### Changed
+- FiveM backup now logs detailed warnings for each skipped file instead of silently failing
+
 ## [0.1.0] - 02-24-2026
 
 ### Added

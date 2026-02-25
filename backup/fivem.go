@@ -44,42 +44,61 @@ func BackupFiveM(fiveMLoc, backupDir string, compress bool) (string, error) {
 
 	// Walk through the FiveM directory and add files to tar
 	baseDir := filepath.Dir(fiveMLoc)
+	var skipCount int
 
 	err = filepath.Walk(fiveMLoc, func(filePath string, info os.FileInfo, err error) error {
 		if err != nil {
-			return err
+			fmt.Printf("Warning: error accessing %s: %v\n", filePath, err)
+			return nil // Skip files we can't access
 		}
 
 		// Get relative path for tar archive
 		relPath, err := filepath.Rel(baseDir, filePath)
 		if err != nil {
-			return err
+			fmt.Printf("Warning: failed to get relative path for %s: %v\n", filePath, err)
+			skipCount++
+			return nil
 		}
 
 		// Use forward slashes for tar archive
 		tarPath := strings.ReplaceAll(relPath, "\\", "/")
 
+		// Skip files with extremely long paths (> 8000 chars indicates potential issues)
+		if len(tarPath) > 8000 {
+			fmt.Printf("Warning: skipping file with extremely long path: %s\n", tarPath)
+			skipCount++
+			return nil
+		}
+
 		header, err := tar.FileInfoHeader(info, "")
 		if err != nil {
-			return err
+			fmt.Printf("Warning: failed to create tar header for %s: %v\n", filePath, err)
+			skipCount++
+			return nil
 		}
 
 		header.Name = tarPath
 
 		if err := tw.WriteHeader(header); err != nil {
-			return err
+			fmt.Printf("Warning: failed to write tar header for %s: %v\n", filePath, err)
+			skipCount++
+			return nil // Continue with next file instead of failing entirely
 		}
 
 		// Write file content if it's a regular file
-		if !info.IsDir() {
+		if !info.IsDir() && info.Mode().IsRegular() {
 			file, err := os.Open(filePath)
 			if err != nil {
-				return err
+				fmt.Printf("Warning: failed to open file %s: %v\n", filePath, err)
+				skipCount++
+				return nil
 			}
 			defer file.Close()
 
 			if _, err := io.Copy(tw, file); err != nil {
-				return err
+				fmt.Printf("Warning: failed to write file content for %s: %v\n", filePath, err)
+				skipCount++
+				return nil
 			}
 		}
 
@@ -89,6 +108,10 @@ func BackupFiveM(fiveMLoc, backupDir string, compress bool) (string, error) {
 	if err != nil {
 		os.Remove(backupPath) // Clean up on failure
 		return "", fmt.Errorf("tar creation failed: %w", err)
+	}
+
+	if skipCount > 0 {
+		fmt.Printf("Warning: %d files were skipped during backup\n", skipCount)
 	}
 
 	// Verify backup was created
