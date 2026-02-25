@@ -21,7 +21,7 @@ func main() {
 	}
 
 	// Define command-line flags
-	fiveMLoc := flag.String("fivem", defaultFiveMLoc, "Path to FiveM server directory")
+	fiveMLoc := flag.String("fivem", defaultFiveMLoc, "Path to FiveM or RedM server directory")
 	mariaDBHost := flag.String("db-host", "localhost", "MariaDB host")
 	mariaDBPort := flag.Int("db-port", 3306, "MariaDB port")
 	mariaDBUser := flag.String("db-user", "root", "MariaDB user")
@@ -30,7 +30,7 @@ func main() {
 	backupDir := flag.String("backup-dir", "./backups", "Backup destination directory")
 	retentionDays := flag.Int("retention", 30, "Backup retention period in days (0 = no cleanup)")
 	compress := flag.Bool("compress", true, "Compress backups")
-	onlyFiveM := flag.Bool("only-fivem", false, "Only backup FiveM server")
+	onlyFiveM := flag.Bool("only-fivem", false, "Only backup FiveM/RedM server")
 	onlyMariaDB := flag.Bool("only-mariadb", false, "Only backup MariaDB database")
 	cleanup := flag.Bool("cleanup", true, "Cleanup old backups")
 
@@ -41,7 +41,7 @@ func main() {
 	s3Region := flag.String("s3-region", "us-east-1", "S3 region")
 	s3AccessKey := flag.String("s3-access-key", "", "S3 access key")
 	s3SecretKey := flag.String("s3-secret-key", "", "S3 secret key")
-	s3UploadFiveM := flag.Bool("s3-upload-fivem", false, "Upload FiveM backup to S3")
+	s3UploadFiveM := flag.Bool("s3-upload-fivem", false, "Upload FiveM/RedM backup to S3")
 	s3UploadMariaDB := flag.Bool("s3-upload-mariadb", false, "Upload MariaDB backup to S3")
 
 	// Discord webhook flags
@@ -115,7 +115,7 @@ func main() {
 	fmt.Printf("Backup Directory: %s\n", config.BackupDir)
 	fmt.Printf("Compression: %v\n", config.Compress)
 	fmt.Printf("Retention: %d days\n", config.RetentionDays)
-	fmt.Printf("FiveM Backup: %v\n", config.EnableFiveM)
+	fmt.Printf("FiveM/RedM Backup: %v\n", config.EnableFiveM)
 	fmt.Printf("MariaDB Backup: %v\n", config.EnableMariaDB)
 	if config.S3Enabled {
 		fmt.Printf("S3 Upload: enabled (bucket: %s)\n", config.S3Bucket)

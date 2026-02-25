@@ -6,9 +6,8 @@
 [![Go Version](https://img.shields.io/badge/Go-1.23%2B-blue)](https://golang.org/)
 [![Release](https://img.shields.io/github/v/release/CodeMeAPixel/pxBackupManager?include_prereleases)](https://github.com/CodeMeAPixel/pxBackupManager/releases)
 [![GitHub Issues](https://img.shields.io/github/issues/CodeMeAPixel/pxBackupManager)](https://github.com/CodeMeAPixel/pxBackupManager/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/CodeMeAPixel/pxBackupManager)](https://github.com/CodeMeAPixel/pxBackupManager)
 
-**A powerful, cross-platform backup manager for FiveM servers with cloud storage and Discord notifications**
+**A powerful, cross-platform backup manager for FiveM & RedM servers with cloud storage and Discord notifications**
 
 [Features](#-features) • [Quick Start](#-quick-start) • [Documentation](#-documentation) • [Contributing](#-contributing)
 
@@ -18,10 +17,10 @@
 
 ## What is pxBackupManager?
 
-pxBackupManager is a backup tool for FiveM servers and MariaDB databases. It supports S3 storage, automatic cleanup, and Discord notifications.
+pxBackupManager is a backup tool for FiveM & RedM servers and MariaDB databases. It supports S3 storage, automatic cleanup, and Discord notifications.
 
 **Perfect for:**
-- FiveM server administrators
+- FiveM & RedM server administrators
 - Businesses running multiple game servers
 - DevOps engineers managing cloud infrastructure
 - Teams requiring automated backups
@@ -31,7 +30,7 @@ pxBackupManager is a backup tool for FiveM servers and MariaDB databases. It sup
 ## Features
 
 ### Core Capabilities
-- **FiveM Server Backups** - Complete server directory backup with compression
+- **FiveM & RedM Server Backups** - Complete server directory backup with compression (works with both)
 - **MariaDB Backups** - Database dumps with safety
 - **Auto Compression** - Reduce backup size by 70-80% with gzip
 - **Retention Policy** - Automatically clean up old backups (configurable)
@@ -93,17 +92,17 @@ Download pre-built binaries from [GitHub Releases](https://github.com/CodeMeAPix
 
 ## Documentation
 
-Comprehensive documentation is available in the [`docs/`](docs/) directory:
+Comprehensive documentation is available at [codemeapixel.dev/docs](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager)
 
 | Document | Purpose |
 |----------|---------|
-| [Recommended Setup](docs/recommended-setup.md) | Production setup with directory structure and user permissions |
-| [Installation Guide](docs/installation.md) | Setup, requirements, and build options |
-| [Usage Guide](docs/usage.md) | Command-line flags and practical examples |
-| [Configuration Guide](docs/configuration.md) | Advanced setup, S3, Discord, and multi-server |
-| [Deployment Guide](docs/deployment.md) | Scheduling with systemd, cron, Docker, Windows |
-| [Features & Capabilities](docs/features.md) | Detailed feature documentation and performance |
-| [Troubleshooting Guide](docs/troubleshooting.md) | Common issues, monitoring, and recovery |
+| [Recommended Setup](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/recommended-setup) | Production setup with directory structure and user permissions |
+| [Installation Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/installation) | Setup, requirements, and build options |
+| [Usage Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/usage) | Command-line flags and practical examples |
+| [Configuration Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/configuration) | Advanced setup, S3, Discord, and multi-server |
+| [Deployment Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/deployment) | Scheduling with systemd, cron, Docker, Windows |
+| [Features & Capabilities](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/features) | Detailed feature documentation and performance |
+| [Troubleshooting Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/troubleshooting) | Common issues, monitoring, and recovery |
 
 ---
 
@@ -130,7 +129,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 ```
 
 ### Setup Systemd Timer (Linux)
-See [Deployment Guide](docs/deployment.md) for complete setup instructions.
+See [Deployment Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/deployment) for complete setup instructions.
 
 ---
 
@@ -186,33 +185,6 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
 
 ---
 
-## Project Structure
-
-```
-pxBackupManager/
-├── main.go                 # CLI entry point
-├── backup/                 # Core backup logic
-│   ├── fivem.go           # FiveM backup implementation
-│   ├── mariadb.go         # MariaDB backup implementation
-│   ├── s3.go              # S3 upload functionality
-│   ├── discord.go         # Discord notifications
-│   └── utils.go           # Utility functions
-├── types/                  # Type definitions
-│   └── types.go           # Configuration and result types
-├── docs/                   # Full documentation
-│   ├── installation.md
-│   ├── usage.md
-│   ├── configuration.md
-│   ├── deployment.md
-│   ├── features.md
-│   └── troubleshooting.md
-├── examples/               # Setup scripts and examples
-├── systemd/                # Systemd service/timer files
-├── Makefile               # Build targets
-└── README.md              # This file
-```
-
----
 
 ## Command-Line Flags Summary
 
@@ -242,7 +214,7 @@ pxBackupManager/
 | `-notify-success` | `false` | Notify on success |
 | `-notify-failure` | `false` | Notify on failure |
 
-See [Usage Guide](docs/usage.md) for complete flag reference.
+See [Usage Guide](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager/usage) for complete flag reference.
 
 ---
 

@@ -6,6 +6,7 @@ backups/
 *.tmp
 
 # Release artifacts (not committed)
+binaries/
 releases/
 pxBackupManager-*.zip
 pxBackupManager-*.tar.gz
@@ -14,3 +15,5 @@ pxBackupManager-*.tar.gz
 create-release.bat
 create-release.sh
 docs/RELEASE_SCRIPTS.md
+devdocs/
+docs/

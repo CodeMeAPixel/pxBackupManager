@@ -5,6 +5,18 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 02-25-2026
+
+### Added
+- **RedM Support**: Full compatibility with RedM servers alongside FiveM (identical backup mechanism)
+- Documentation now hosted at [codemeapixel.dev](https://codemeapixel.dev/docs/assets/server-management/pxbackupmanager)
+
+### Changed
+- Updated all documentation to reflect RedM support
+- Updated help text and flag descriptions to mention both FiveM and RedM
+- Updated systemd service description to include RedM
+- Enhanced README to highlight dual FiveM/RedM compatibility
+
 ## [0.1.1] - 02-25-2026
 
 ### Fixed
